@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "generate": "graphql codegen",
     "start": "ts-node index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +16,7 @@
     "prisma-client-lib": "^1.24.0"
   },
   "devDependencies": {
+    "prisma-binding": "^2.2.14",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   }
