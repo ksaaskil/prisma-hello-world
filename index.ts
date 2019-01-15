@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { prisma } from './generated/prisma-client';
 import { GraphQLServer } from 'graphql-yoga';
 import { UserResolvers, PostResolvers, MutationResolvers, QueryResolvers } from './generated/graphqlgen';
