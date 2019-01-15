@@ -1,6 +1,6 @@
 # Getting started with [Prisma](https://www.prisma.io/)
 
-Partly based on the tutorial [Get started tutorial](https://www.prisma.io/docs/get-started) of Prisma.
+Partly based on the [Get started tutorial](https://www.prisma.io/docs/get-started) of Prisma.
 
 ## Instructions
 
