@@ -1,5 +1,5 @@
 # Created with `prisma init --endpoint http://localhost:4466`
-endpoint: http://localhost:4466
+endpoint: http://localhost:4466/hello-world/dev
 datamodel: datamodel.prisma
 
 generate:
