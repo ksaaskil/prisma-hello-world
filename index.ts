@@ -1,9 +1,7 @@
 import { prisma } from './generated/prisma-client';
-import { Query } from './generated/graphqlgen';
 import { GraphQLServer } from 'graphql-yoga';
 
-const resolvers: Query.R = {
-  Query: {
+const Query = {
     publishedPosts(parent, args, context) {
       return context.prisma.posts({ where: { published: true } })
     },
@@ -15,8 +13,9 @@ const resolvers: Query.R = {
         id: args.userId
       }).posts()
     }
-  },
-  Mutation: {
+  };
+
+const Mutation = {
     createDraft(parent, args, context) {
       return context.prisma.createPost(
         {
@@ -42,21 +41,29 @@ const resolvers: Query.R = {
         { name: args.name },
       )
     }
-  },
-  User: {
+  };
+
+const User = {
     posts(parent, args, context) {
       return context.prisma.user({
         id: parent.id
       }).posts()
     }
-  },
-  Post: {
+  };
+
+const Post = {
     author(parent, args, context) {
       return context.prisma.post({
         id: parent.id
       }).author()
     }
-  }
+  };
+
+const resolvers = {
+  Query,
+  Mutation,
+  User,
+  Post
 }
 
 const server = new GraphQLServer({
