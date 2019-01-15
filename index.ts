@@ -1,7 +1,8 @@
 import { prisma } from './generated/prisma-client';
+import { Query } from './generated/graphqlgen';
 import { GraphQLServer } from 'graphql-yoga';
 
-const resolvers = {
+const resolvers: Query.R = {
   Query: {
     publishedPosts(parent, args, context) {
       return context.prisma.posts({ where: { published: true } })

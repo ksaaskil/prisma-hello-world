@@ -1,0 +1,6 @@
+language: typescript
+schema: ./schema.graphql
+models:
+  files:
+    - ./models.ts
+output: ./generated/graphqlgen.ts
