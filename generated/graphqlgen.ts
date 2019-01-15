@@ -62,7 +62,10 @@ export namespace QueryResolvers {
 
 export namespace PostResolvers {
   export const defaultResolvers = {
-    id: (parent: Post) => parent.id
+    id: (parent: Post) => parent.id,
+    title: (parent: Post) => parent.title,
+    published: (parent: Post) => parent.published,
+    author: (parent: Post) => parent.author
   };
 
   export type IdResolver = (
@@ -126,7 +129,10 @@ export namespace PostResolvers {
 
 export namespace UserResolvers {
   export const defaultResolvers = {
-    id: (parent: User) => parent.id
+    id: (parent: User) => parent.id,
+    name: (parent: User) => parent.name,
+    email: (parent: User) => (parent.email === undefined ? null : parent.email),
+    posts: (parent: User) => parent.posts
   };
 
   export type IdResolver = (

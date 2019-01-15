@@ -1,5 +1,7 @@
 import { prisma } from './generated/prisma-client';
 import { GraphQLServer } from 'graphql-yoga';
+import { UserResolvers, PostResolvers } from './generated/graphqlgen';
+import { IResolvers } from 'graphql-middleware/dist/types';
 
 const Query = {
     publishedPosts(parent, args, context) {
@@ -43,7 +45,8 @@ const Mutation = {
     }
   };
 
-const User = {
+const User = {  // : UserResolvers.Type
+    ...UserResolvers.defaultResolvers,
     posts(parent, args, context) {
       return context.prisma.user({
         id: parent.id
@@ -52,6 +55,7 @@ const User = {
   };
 
 const Post = {
+    ...PostResolvers.defaultResolvers,
     author(parent, args, context) {
       return context.prisma.post({
         id: parent.id
@@ -59,7 +63,7 @@ const Post = {
     }
   };
 
-const resolvers = {
+const resolvers: IResolvers = {
   Query,
   Mutation,
   User,

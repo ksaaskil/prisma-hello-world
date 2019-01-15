@@ -1,15 +1,13 @@
 export interface User {
     id: string
-    name: string | null
-    password: string
+    name: string
+    email: string | null
+    posts: Post[]
 }
 
 export interface Post {
     id: string
-    /*
-    id: ID!
-    title: String!
-    published: Boolean!
+    title: string
+    published: boolean
     author: User
-    */
 }
