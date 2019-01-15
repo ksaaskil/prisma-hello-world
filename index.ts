@@ -1,9 +1,9 @@
 import { prisma } from './generated/prisma-client';
 import { GraphQLServer } from 'graphql-yoga';
-import { UserResolvers, PostResolvers } from './generated/graphqlgen';
-import { IResolvers } from 'graphql-middleware/dist/types';
+import { UserResolvers, PostResolvers, MutationResolvers, QueryResolvers } from './generated/graphqlgen';
+// import { resolvers } from './generated/tmp-resolvers'
 
-const Query = {
+const Query: QueryResolvers.Type = {
     publishedPosts(parent, args, context) {
       return context.prisma.posts({ where: { published: true } })
     },
@@ -17,7 +17,7 @@ const Query = {
     }
   };
 
-const Mutation = {
+const Mutation: MutationResolvers.Type = {
     createDraft(parent, args, context) {
       return context.prisma.createPost(
         {
@@ -45,7 +45,7 @@ const Mutation = {
     }
   };
 
-const User = {  // : UserResolvers.Type
+const User: UserResolvers.Type = {  // : UserResolvers.Type
     ...UserResolvers.defaultResolvers,
     posts(parent, args, context) {
       return context.prisma.user({
@@ -54,7 +54,7 @@ const User = {  // : UserResolvers.Type
     }
   };
 
-const Post = {
+const Post: PostResolvers.Type = {
     ...PostResolvers.defaultResolvers,
     author(parent, args, context) {
       return context.prisma.post({
@@ -63,12 +63,14 @@ const Post = {
     }
   };
 
-const resolvers: IResolvers = {
+// Need "any" here :( https://github.com/prisma/graphqlgen/issues/15
+const resolvers: any = {
   Query,
   Mutation,
   User,
   Post
-}
+};
+
 
 const server = new GraphQLServer({
     typeDefs: './schema.graphql',

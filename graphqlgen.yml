@@ -4,3 +4,8 @@ models:
   files:
     - ./models.ts
 output: ./generated/graphqlgen.ts
+
+# Temporary scaffolded resolvers to copy and paste in your application
+resolver-scaffolding:
+  output: ./generated/tmp-resolvers/
+  layout: file-per-type
