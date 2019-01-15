@@ -1,31 +1,36 @@
 # Getting started with [Prisma](https://www.prisma.io/)
 
-Based on the tutorial [here](https://www.prisma.io/docs/get-started).
+Partly based on the tutorial [Get started tutorial](https://www.prisma.io/docs/get-started) of Prisma.
 
-## Usage
+## Instructions
 
-### Install dependencies
+Install dependencies:
 ```bash
 $ yarn
+$ yarn global add prisma graphqlgen
 ```
 
-### Deploy `prisma.yml`
+Deploy `prisma.yml`:
 ```bash
 $ prisma deploy -e .env
 ```
-Here `.env` should include `PRISMA_SECRET`.
+Here `.env` should include `PRISMA_SECRET` and `PRISMA_ENDPOINT`.
 
-### Generate Prisma client
+Generate the Prisma client and TypeScript types:
+```bash
+$ yarn generate
+```
+
+This generates the Prisma client with
 ```bash
 $ prisma generate
 ```
-
-### Generate type-safe classes for graphql.schema
+and type-safe TypeScript classes for resolvers etc. with
 ```bash
 $ graphqlgen
 ```
 
-### Generate client and TypeScript types
+Start the local GraphQL server at `http://localhost:4000`:
 ```bash
-$ yarn generate
+$ yarn start
 ```
